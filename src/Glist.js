@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
+import All from './All';
+import Gall from './Gall';
 import Load from './Load';
 
 const Glist = ({ genre, limit }) => {
@@ -36,20 +39,21 @@ const Glist = ({ genre, limit }) => {
                             movie.map(it => {
                                 return (
                                     <div key={it.id} className="itm">
-                                        <figure>
-                                            <img src={it.large_cover_image} alt={it.title} />
-                                        </figure>
-                                        <div className="case">
-                                            <div className='title'>{it.title_long}</div>
-                                            <div className='desc'>{it.description_full.substr(0, 100)} ... </div>
-                                            <ul className='genre'>
-                                                {
-                                                    it.genres.map((g, i) => <li key={i}>{g}</li>)
-                                                }
-                                            </ul>
-                                        </div>
-                                        <button className='btn'> + </button>
-
+                                        <Link to={`/detail/${it.id}`}>
+                                            <figure>
+                                                <img src={it.large_cover_image} alt={it.title} />
+                                            </figure>
+                                            <div className="case">
+                                                <div className='title'>{it.title_long}</div>
+                                                <div className='desc'>{it.description_full.substr(0, 100)} ... </div>
+                                                <ul className='genre'>
+                                                    {
+                                                        it.genres.map((g, i) => <li key={i}>{g}</li>)
+                                                    }
+                                                </ul>
+                                            </div>
+                                            {/* <button className='btn'> + </button> */}
+                                        </Link>
                                     </div>
                                 )
                             })
@@ -60,6 +64,8 @@ const Glist = ({ genre, limit }) => {
                 <i className="xi-arrow-left" onClick={() => MS.current.slickPrev()}></i>
                 <i className="xi-arrow-right" onClick={() => MS.current.slickNext()}></i>
             </div>
+            <Gall genre={genre} />
+
         </section>
     )
 }

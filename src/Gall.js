@@ -2,20 +2,20 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-const All = () => {
+const Gall = ({ genre }) => {
     const [movie, setMovie] = useState([]);
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
     const [snum, setSnum] = useState(1);
     const allMovie = async () => {
-        const res = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&limit=16`);
+        const res = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&genre=${genre}&limit=16`);
         console.log(res.data, res.data.data.movie_count);
         setMovie(res.data.data.movies);
         setTotal(res.data.data.movie_count)
     }
     useEffect(() => {
         allMovie()
-    }, [page]);
+    }, [page, genre]);
 
     const cnum = 20;
     const pnum = 10;
@@ -65,4 +65,4 @@ const All = () => {
     )
 }
 
-export default All;
+export default Gall;
