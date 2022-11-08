@@ -7,6 +7,9 @@ const Gall = ({ genre }) => {
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
     const [snum, setSnum] = useState(1);
+    const handleImgError = (e) => {
+        e.target.src = process.env.PUBLIC_URL + "/cover.jpg";
+    }
     const allMovie = async () => {
         const res = await axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&genre=${genre}&limit=16`);
         console.log(res.data, res.data.data.movie_count);
@@ -24,20 +27,21 @@ const Gall = ({ genre }) => {
 
     return (
         <section className='All sec'>
-
+            <h3>{total}개의 영화가 있습니다.</h3>
             <ul className='grid'>
                 {
                     movie.map(it => {
                         return (
                             <li key={it.id} className='itm'>
-                                <Link to={`/Action/${it.id}`}>
+                                <Link to={`/${genre}/${it.id}`}>
                                     <figure>
-                                        <img src={it.medium_cover_image} alt={it.title} />
+                                        <img src={it.medium_cover_image} alt={it.title} onError={handleImgError} />
                                     </figure>
                                     <div className="case">
                                         <div className='desc'>{it.title}</div>
                                     </div>
                                 </Link>
+
                             </li>
                         )
                     })
@@ -65,4 +69,4 @@ const Gall = ({ genre }) => {
     )
 }
 
-export default Gall;
+export default Gall
