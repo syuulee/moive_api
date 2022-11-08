@@ -1,10 +1,13 @@
 {
   "files": {
-    "main.js": "/moive_api/static/js/main.eec7daa3.js",
+    "main.css": "/moive_api/static/css/main.712b6229.css",
+    "main.js": "/moive_api/static/js/main.220499b8.js",
     "index.html": "/moive_api/index.html",
-    "main.eec7daa3.js.map": "/moive_api/static/js/main.eec7daa3.js.map"
+    "main.712b6229.css.map": "/moive_api/static/css/main.712b6229.css.map",
+    "main.220499b8.js.map": "/moive_api/static/js/main.220499b8.js.map"
   },
   "entrypoints": [
-    "static/js/main.eec7daa3.js"
+    "static/css/main.712b6229.css",
+    "static/js/main.220499b8.js"
   ]
 }
